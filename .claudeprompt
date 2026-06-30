@@ -3,7 +3,7 @@ You are an expert frontend developer specializing in Apple-style extreme minimal
 
 # Context & Stack
 - **Framework/Styling:** Tailwind CSS + Shadcn UI (Radix UI primitives).
-- **Existing Files:** Header, Hero, Footer, and About pages are already implemented using Tailwind and our local `DESIGN_SYSTEM.md`.
+- **Existing Files:** Header, LocalNav, Hero, Footer, and About pages are already implemented using Tailwind and our local `DESIGN_SYSTEM.md`. `components/Header.tsx` currently renders a flat nav (`/about`, `/programs`, `/contact`, `/login`) with no dropdown.
 - **Core Directive:** Absolutely NO Material UI (MUI). Avoid any Google-style design paradigms (e.g., heavy ripples, standard grid layouts, sharp material shadows).
 
 # Design Philosophy (Apple Minimalism)
@@ -14,12 +14,31 @@ When generating or modifying UI, you must strictly follow these aesthetic guidel
 4. **Typography First:** Rely on font-weight contrast, letter-spacing, and tracking rather than excessive colors or icons.
 
 # Strict Implementation Rules
-- **Rule 1 (Style Sync):** Read and strictly follow the design tokens, colors, and font rules defined in `DESIGN_SYSTEM.md` and `tailwind.config.js`.
+- **Rule 1 (Style Sync):** Read and strictly follow the design tokens, colors, and font rules defined in `DESIGN_SYSTEM.md` and `app/globals.css` CSS variables.
 - **Rule 2 (No Bloat):** Do not install unnecessary npm packages. If a complex interactive component is needed, look for existing Shadcn UI setups or build a clean Tailwind-based headless component.
 - **Rule 3 (Component Isolation):** Keep layout systems (Header/Footer/Grids) separated from functional interactive forms.
 
 # Task Instruction
-Please implement/modify the following page or component:
-[👉 여기에 구현할 작업 작성. 예: "/contact 페이지의 문의하기 폼 컴포넌트 생성 및 기존 라우트에 연결"]
+Implement a **full-bleed (edge-to-edge viewport-width) mega dropdown menu** for `components/Header.tsx`, matching the reference screenshot (Apple's `/mac/` nav mega menu) in structure:
+
+1. **Trigger:** Each top-level nav item (e.g. "시설 소개", "프로그램") that has sub-pages becomes a trigger. On hover (desktop) or tap (mobile), it opens a panel.
+2. **Panel layout:** The dropdown panel spans the **full browser width** (`w-screen`, not constrained to the header's `max-w-7xl` container), positioned `absolute left-0 right-0` directly below the header, full viewport width regardless of where the trigger sits.
+3. **Content layout:** Inside the panel, content stays constrained to the site's `max-w-7xl` container and is split into **multiple columns** (2–4 depending on section), each column with:
+   - A muted, small-caps-style category label at the top (e.g. `text-xs uppercase tracking-wide text-[#666666]`)
+   - A list of links below, larger and bolder than the label (`text-base md:text-lg font-medium text-[#222222]`), each with hover state transitioning to `text-[#4a7c59]`
+4. **Visual style:**
+   - Background: `bg-white/95 backdrop-blur-md` with a hairline `border-b border-black/5` and a soft `shadow-sm` at the bottom edge
+   - Generous padding (`py-12`), columns separated by gap only (no vertical dividers, Apple does not use them here)
+   - Panel height auto-fits content, not full-screen-height
+5. **Motion:** Fade + slight slide-down on open/close (`opacity` + `translateY(-8px) → 0`, ~200ms, Framer Motion `AnimatePresence`), respecting `prefers-reduced-motion` per existing `lib/motion.ts` pattern.
+6. **Interaction details:**
+   - Closes on: mouse leave (with a short delay to allow moving into the panel), `Escape` key, clicking a link, clicking outside
+   - Only one mega menu open at a time
+   - On mobile, do NOT render the mega panel — fold these same links into the existing mobile slide-down menu as a flat list (no mega layout on small screens)
+7. **Content mapping for this site** (adapt link groups to our actual pages — do not invent fake destinations):
+   - **"시설 소개" trigger** → columns: "둘러보기" (시설 소개 `/about`, 시설 둘러보기 `/about#story` if applicable), "프로그램" (`/programs`)
+   - **"상담 신청" trigger** can stay a plain link (no dropdown needed, it's a single destination)
+   - **"보호자 로그인" trigger** stays a plain link
+   - Only add a mega panel where there are genuinely 2+ real sub-links; do not force a dropdown onto a single-link item
 
 Ensure the layout looks premium, sleek, and perfectly aligned with our Apple-style aesthetic without requiring granular step-by-step instructions. Output the code changes directly or execute the necessary file modifications.

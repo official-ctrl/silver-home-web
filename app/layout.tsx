@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import MuiProvider from "@/components/MuiProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">
-        <MuiProvider>{children}</MuiProvider>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

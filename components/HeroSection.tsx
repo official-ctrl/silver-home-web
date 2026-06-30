@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import { fadeUpVariants } from "@/lib/motion";
 
 export default function HeroSection() {
@@ -15,16 +14,16 @@ export default function HeroSection() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgba(45,79,56,0.55) 0%, rgba(45,79,56,0.75) 100%), linear-gradient(135deg, #4a7c59 0%, #2d4f38 60%, #1c3526 100%)",
+            "linear-gradient(180deg, rgba(45,79,56,0.5) 0%, rgba(45,79,56,0.78) 100%), linear-gradient(135deg, #4a7c59 0%, #2d4f38 60%, #1c3526 100%)",
         }}
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-6 text-center">
         <motion.p
           initial={variants.hidden}
           animate={variants.visible}
-          className="text-sm font-medium uppercase tracking-wide text-[#e8f0ea]"
+          className="text-xs font-medium uppercase tracking-[0.2em] text-[#e8f0ea]/90"
         >
           Bulgoksan Forest Silver Home
         </motion.p>
@@ -32,47 +31,43 @@ export default function HeroSection() {
         <motion.h1
           initial={variants.hidden}
           animate={variants.visible}
-          transition={{ delay: reduceMotion ? 0 : 0.15 }}
-          className="mt-4 text-5xl font-bold leading-tight tracking-tight text-white md:text-6xl"
+          transition={{ delay: reduceMotion ? 0 : 0.12 }}
+          className="mt-6 text-6xl font-semibold leading-[1.05] tracking-tight text-white md:text-8xl"
         >
           자연이 품은
-          <br />두 번째 집
+          <br />
+          두 번째 집
         </motion.h1>
 
         <motion.p
           initial={variants.hidden}
           animate={variants.visible}
-          transition={{ delay: reduceMotion ? 0 : 0.3 }}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-[#e8f0ea]"
+          transition={{ delay: reduceMotion ? 0 : 0.24 }}
+          className="mt-7 max-w-xl text-lg font-normal leading-relaxed text-[#e8f0ea]/90 md:text-xl"
         >
           불곡산 숲 한가운데, 소중한 가족을 위한 프리미엄 요양 공간입니다.
         </motion.p>
 
-        <motion.a
-          href="/contact"
+        <motion.div
           initial={variants.hidden}
           animate={variants.visible}
-          transition={{ delay: reduceMotion ? 0 : 0.45 }}
-          className="mt-10 rounded-full bg-white px-8 py-4 text-sm font-medium text-[#2d4f38] transition-colors hover:bg-[#e8f0ea]"
+          transition={{ delay: reduceMotion ? 0 : 0.36 }}
+          className="mt-9 flex items-center gap-8 text-base"
         >
-          상담 예약하기
-        </motion.a>
-      </div>
-
-      <motion.div
-        initial={{ opacity: reduceMotion ? 1 : 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: reduceMotion ? 0 : 1, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
-        aria-hidden
-      >
-        <motion.div
-          animate={reduceMotion ? {} : { y: [0, 8, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown className="text-white/80" size={28} />
+          <a
+            href="/contact"
+            className="border-b border-white/40 pb-0.5 text-white transition-colors hover:border-white"
+          >
+            상담 예약하기 ›
+          </a>
+          <a
+            href="/about"
+            className="border-b border-white/40 pb-0.5 text-white transition-colors hover:border-white"
+          >
+            시설 둘러보기 ›
+          </a>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

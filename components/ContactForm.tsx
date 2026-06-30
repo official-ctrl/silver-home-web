@@ -109,6 +109,7 @@ export default function ContactForm() {
           <Input
             id="name"
             name="name"
+            autoComplete="name"
             value={values.name}
             onChange={handleChange("name")}
             aria-invalid={Boolean(errors.name)}
@@ -125,6 +126,7 @@ export default function ContactForm() {
           <Input
             id="phone"
             name="phone"
+            autoComplete="tel"
             placeholder="010-1234-5678"
             value={values.phone}
             onChange={handleChange("phone")}

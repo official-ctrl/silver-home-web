@@ -20,8 +20,11 @@ export default function MegaMenu({ category, onLinkClick }: MegaMenuProps) {
           role="menu"
           initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-          transition={{ duration: reduceMotion ? 0 : 0.2, ease: EASE_APPLE }}
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+          transition={{
+            duration: reduceMotion ? 0 : 0.2,
+            ease: EASE_APPLE,
+          }}
           className="absolute inset-x-0 top-full w-full border-b border-black/5 bg-white/95 shadow-sm backdrop-blur-md"
         >
           <div className="mx-auto max-w-7xl px-6 py-12 md:px-10">

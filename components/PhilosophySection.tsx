@@ -8,7 +8,10 @@ export default function PhilosophySection() {
   const variants = fadeUpVariants(!!reduceMotion);
 
   return (
-    <section className="bg-white px-6 py-40 md:px-10">
+    <section
+      id="philosophy"
+      className="scroll-mt-28 bg-white px-6 py-40 md:scroll-mt-32 md:px-10"
+    >
       <motion.p
         initial={variants.hidden}
         whileInView={variants.visible}

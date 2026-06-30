@@ -8,7 +8,10 @@ export default function CTASection() {
   const variants = fadeUpVariants(!!reduceMotion);
 
   return (
-    <section className="bg-[#1c2b21] px-6 py-32 text-center md:px-10">
+    <section
+      id="contact"
+      className="scroll-mt-28 bg-[#1c2b21] px-6 py-32 text-center md:scroll-mt-32 md:px-10"
+    >
       <motion.div
         initial={variants.hidden}
         whileInView={variants.visible}

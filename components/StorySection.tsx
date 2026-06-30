@@ -14,7 +14,10 @@ export default function StorySection() {
   const variants = fadeUpVariants(!!reduceMotion);
 
   return (
-    <section className="bg-[#fafafa] px-6 py-28 md:px-10 md:py-36">
+    <section
+      id="story"
+      className="scroll-mt-28 bg-[#fafafa] px-6 py-28 md:scroll-mt-32 md:px-10 md:py-36"
+    >
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={variants.hidden}

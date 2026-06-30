@@ -27,7 +27,10 @@ export default function ValuesGrid() {
   const variants = fadeUpVariants(!!reduceMotion);
 
   return (
-    <section className="bg-white px-6 py-28 md:px-10 md:py-36">
+    <section
+      id="values"
+      className="scroll-mt-28 bg-white px-6 py-28 md:scroll-mt-32 md:px-10 md:py-36"
+    >
       <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-3 md:gap-10">
         {VALUES.map(({ icon: Icon, title, description }, index) => (
           <motion.div

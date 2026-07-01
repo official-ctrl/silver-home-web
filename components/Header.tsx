@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import MegaMenu from "@/components/MegaMenu";
@@ -98,6 +99,7 @@ export default function Header() {
   useEffect(() => clearCloseTimer, []);
 
   const isHeaderSolid = scrolled || openCategory !== null;
+  const isMenuOpen = openCategory !== null;
 
   const closeMobileMenu = () => {
     setMenuOpen(false);
@@ -109,19 +111,34 @@ export default function Header() {
       ref={headerRef}
       onMouseLeave={scheduleClose}
       className={`fixed top-0 z-50 w-full border-b transition-colors duration-300 ${
-        isHeaderSolid
-          ? "border-gray-100/50 bg-white/95 backdrop-blur-sm"
-          : "border-transparent bg-transparent"
+        isMenuOpen
+          ? "border-gray-100 bg-white"
+          : isHeaderSolid
+            ? "border-gray-100/50 bg-white/95 backdrop-blur-sm"
+            : "border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:h-20 md:px-10">
-        <Link
-          href="/"
-          className={`text-lg font-semibold tracking-tight md:text-xl ${
-            isHeaderSolid ? "text-[#222222]" : "text-white"
-          }`}
-        >
-          불곡산숲실버홈
+        <Link href="/" className="relative flex shrink-0 items-center">
+          {/* 솔리드 헤더(스크롤/메뉴 열림): 다크그린 로고 이미지 */}
+          <Image
+            src="/images/logo.png"
+            alt="불곡산숲실버홈"
+            width={1062}
+            height={992}
+            priority
+            className={`h-12 w-auto transition-opacity duration-300 md:h-14 ${
+              isHeaderSolid ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          {/* 투명 헤더(최상단): 흰색 텍스트 워드마크 */}
+          <span
+            className={`absolute whitespace-nowrap text-lg font-semibold tracking-tight text-white transition-opacity duration-300 md:text-xl ${
+              isHeaderSolid ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
+          >
+            불곡산숲실버홈
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

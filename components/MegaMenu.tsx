@@ -25,7 +25,7 @@ export default function MegaMenu({ category, onLinkClick }: MegaMenuProps) {
             duration: reduceMotion ? 0 : 0.2,
             ease: EASE_APPLE,
           }}
-          className="absolute inset-x-0 top-full w-full border-b border-black/5 bg-white/95 shadow-sm backdrop-blur-md"
+          className="absolute inset-x-0 top-full w-full border-b border-gray-100 bg-white shadow-sm"
         >
           <div className="mx-auto max-w-7xl px-6 py-12 md:px-10">
             <div className="grid grid-cols-2 gap-10 md:flex md:gap-20">

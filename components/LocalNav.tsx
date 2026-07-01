@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const TABS = [
+  { id: "care", label: "케어 서비스" },
+  { id: "stats", label: "시설 현황" },
   { id: "philosophy", label: "철학" },
-  { id: "story", label: "숲길 산책" },
-  { id: "values", label: "핵심 가치" },
   { id: "contact", label: "상담 문의" },
 ];
 
